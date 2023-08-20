@@ -2,114 +2,211 @@
 #include <math.h>
 
 using namespace std;
-
-int fact(int n){
-	int ans=1;
-	for(int i=1; i<=n; i++){
-		ans = ans * i;
+int part1(int n){
+	cout<<"B TO D"<<endl;
+	int ans=0, i=0;
+	while(n!=0){
+		int digit = n%10;
+		if(digit==1){                                                   
+		ans = ans+pow(2,i);
+		}
+		n = n/10;
+		i++;
 	}
 	return ans;
 }
 
-int NCR(int n, int r){
-	int newo = fact(n);
-	int dewo = fact(r) - fact(n-r);
-	return newo/dewo;
+int octal(int n){
+	int ans=0, i=0;
+	while(n!=0){
+		int dig = n%10;
+		ans = dig*pow(8,i) + ans;
+		n = n/10;
+		i++;
+	}
+	return ans;
 }
 
-int fibnum(int n){
-	int n1 = 0;
-	int n2 = 1;
-	int ans;
+//int hexdec(int n){
+//	int ans=0, i=0;
+//	while(n!=0){
+//		ans = n%10;
+//		ans = ans + pow(8,i);
+//		n = n/10;
+//		i++;
+//	}
+//	return ans;
+//}
+int part4(int n){
+	cout<<"D TO B"<<endl;
+	int ans=0, i=0;
+	while(n!=0){
+		int digit = n&1;
+		ans = digit*pow(10, i) + ans;
+		n = n>>1;
+		i++;
+	}
+	return ans;
+}
+
+int part5(int n){
+	cout<<"D TO O"<<endl;
+	int ans=0, i=0;
+	while(n!=0){
+		int dig = n%8;
+		ans = dig*pow(10, i) + ans;
+		n = n/8;
+		i++;
+	}
+	return ans;
+}
+
+
+int sum(int n){
+	int ans = 0;
 	for(int i=0; i<=n; i++){
-		cout<<n1<<" ";
-		ans = n1+n2;
-		n1 = n2;
-		n2 = ans;
-	}
-	//return ;
-}
-
-int primenum(int n){
-	for(int i=2; i<=sqrt(n); i++){
-		if(n%i==0){
-			return false;
-		}
-	}
-	return true;
-}
-
-int AP(int n){
-	return (3*n+7);
-}
-
-int setbit(int a, int b){
-	int ans = 0, bit = 0;
-	while(a!=0){
-		 bit = a&1;
-		if(bit == 1){
-			ans++;
-		}
-		a=a>>1;
-	}
-	while(b!=0){
-		 bit = b&1;
-		if(bit == 1){
-			ans++;
-		}
-		b=b>>1;
-	}
+		ans = ans + i;
+ 	}
 	return ans;
 }
 
-int fab(int n){
-	int num = 0, num1 = 1, ans = 0;
-	for(int i=3; i<=n; i++){
-		ans = num+num1;
-		num = num1;
-		num1 = ans;
-	} 
-	return ans;
-}
-
-int factorial(int n){
-	int fact = 1;
-	for(int i=0; i<=n; i++){
-		fact = fact * i;
-	}
-	return fact;
-}
-int nCr(int n, int r){
-	int newo = factorial(n);
-	int dewo = factorial(r)*factorial(n-r);
-	int ans = newo/dewo;
-	return ans;
-	
-}
-
-int POW(int a, int b){
-	int ans = 1;
-	for(int i=1; i<=b; i++){
-		ans = ans * a;
-	}
-	return ans;
-}
-
-int evenodd(int n){
-	if(n%2==0){
-		return true;
-	}
-	return false;
-}
-
-bool prime(int m){
-	for(int i=2; i<=(m-1); i++){
-		if(m%i==0){
-			return false;
+bool pt(int n1, int n2, int n3){
+	if(n1>n2 || n1>n3){
+		int a = n1*n1;
+		int b = n2*n2;
+		int c = n3*n3;
+		int sum = b+c;
+		if(a==sum){
+			return true;
 		}
 	}
-	return true;
+	if(n2>n1 || n2>n3){
+		int a = n2*n2;
+		int b = n1*n1;
+		int c = n3*n3;
+		int sum = b+c;
+		if(a==sum){
+			return true;
+		}
+	}
+	if(n3>n1 || n3>n2){
+		int a = n3*n3;
+		int b = n2*n2;
+		int c = n1*n1;
+		int sum = b+c;
+		if(a==sum){
+			return true;
+		}
+	}
+	return false;	
 }
+//int fact(int n){
+//	int ans=1;
+//	for(int i=1; i<=n; i++){
+//		ans = ans * i;
+//	}
+//	return ans;
+//}
+//
+//int NCR(int n, int r){
+//	int newo = fact(n);
+//	int dewo = fact(r) *	 fact(n-r);
+//	return newo/dewo;
+//}
+//
+//int fibnum(int n){
+//	int n1 = 0;
+//	int n2 = 1;
+//	int ans;
+//	for(int i=0; i<=n; i++){
+//		cout<<n1<<" ";
+//		ans = n1+n2;
+//		n1 = n2;
+//		n2 = ans;
+//	}
+//	//return ;
+//}
+//
+//int primenum(int n){
+//	for(int i=2; i<=sqrt(n); i++){
+//		if(n%i==0){
+//			return false;
+//		}
+//	}
+//	return true;
+//}
+//
+//int AP(int n){
+//	return (3*n+7);
+//}
+//
+//int setbit(int a, int b){
+//	int ans = 0, bit = 0;
+//	while(a!=0){
+//		 bit = a&1;
+//		if(bit == 1){
+//			ans++;
+//		}
+//		a=a>>1;
+//	}
+//	while(b!=0){
+//		 bit = b&1;
+//		if(bit == 1){
+//			ans++;
+//		}
+//		b=b>>1;
+//	}
+//	return ans;
+//}
+//
+//int fab(int n){
+//	int num = 0, num1 = 1, ans = 0;
+//	for(int i=3; i<=n; i++){
+//		ans = num+num1;
+//		num = num1;
+//		num1 = ans;
+//	} 
+//	return ans;
+//}
+//
+//int factorial(int n){
+//	int fact = 1;
+//	for(int i=0; i<=n; i++){
+//		fact = fact * i;
+//	}
+//	return fact;
+//}
+//int nCr(int n, int r){
+//	int newo = factorial(n);
+//	int dewo = factorial(r)*factorial(n-r);
+//	int ans = newo/dewo;
+//	return ans;
+//	
+//}
+//
+//int POW(int a, int b){
+//	int ans = 1;
+//	for(int i=1; i<=b; i++){
+//		ans = ans * a;
+//	}
+//	return ans;
+//}
+//
+//int evenodd(int n){
+//	if(n%2==0){
+//		return true;
+//	}
+//	return false;
+//}
+//
+//bool prime(int m){
+//	for(int i=2; i<=(m-1); i++){
+//		if(m%i==0){
+//			return false;
+//		}
+//	}
+//	return true;
+//}
 int main(int argc, char** argv) {
 	//Binary to Decimal Conversion 
 //	int n,num=1, ans=0;
@@ -340,8 +437,40 @@ int main(int argc, char** argv) {
 //int n;
 //cin>>n;
 //cout<<fact(n);
-int n1, n2;
-cin>>n1>>n2;
-cout<<NCR(n1, n2);
+//int n1, n2;
+//cin>>n1>>n2;
+
+//Pascal Pattern
+//int n;
+//cin>>n;
+//for(int i=0; i<=n; i++){
+//	for(int j=0; j<=i; j++){
+//		cout<<NCR(i, j);
+//	}
+//	cout<<endl;
+//}
+
+
+//=====p5
+
+//q1 sum of n natural numbers
+//int n;
+//cin>>n;
+//cout<<sum(n);
+
+
+///q2 pythagori tripleing 
+//int a, b, c;
+//cin>>a>>b>>c;
+//cout<<pt(a, b, c);
+
+//q3 part1
+int n;
+cin>>n;
+//cout<<part1(n);
+//cout<<octal(n);
+//cout<<part4(n);
+cout<<part5(n);
+
  return 0;
 }
